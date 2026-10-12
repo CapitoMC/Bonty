@@ -30,15 +30,6 @@ public class Bonty extends JavaPlugin {
 
         databaseManager = new DatabaseManager(this);
         databaseManager.connect();
-
-        // initialize bStats if available
-        try {
-            Class.forName("org.bstats.bukkit.Metrics");
-            Metrics metrics = new Metrics(this, 4);
-        } catch (ClassNotFoundException cnf) {
-            getLogger().warning("bStats not found on server, skipping metrics");
-        }
-
         kothManager = new KothManager(this);
         kothDisplayManager = new KothDisplayManager(this);
         leaderboardManager = new LeaderboardManager(this);
@@ -64,14 +55,6 @@ public class Bonty extends JavaPlugin {
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             kothDisplayManager.updateDisplays();
         }, 20L, scoreboardInterval);
-
-        getLogger().info(" ");
-        getLogger().info("╔═══════════════════════════════════════════════════════════╗");
-        getLogger().info("║  Bonty | Started successfully.                            ║");
-        getLogger().info("║  discord.zaryxstudios.dev                                 ║");
-        getLogger().info("║  KoTH Plugin Free                                         ║");
-        getLogger().info("╚═══════════════════════════════════════════════════════════╝");
-        getLogger().info(" ");
     }
     
     @Override
